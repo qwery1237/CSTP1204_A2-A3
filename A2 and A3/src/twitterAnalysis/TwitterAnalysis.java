@@ -52,6 +52,8 @@ public class TwitterAnalysis {
 
         queries = getQuerySet(data);
 
+        System.out.println(usersGraph);
+
         for (String query : queries) {
 
             String[] queryInfo = query.split(" ");
@@ -89,11 +91,13 @@ public class TwitterAnalysis {
 
     public static String retweets(Graph graph , Vertex user1, Vertex user2) {
         String result = "query: numRetweets "+user1 + " " + user2 + "\n";
-        int distance = Algorithms.shortestDistance(graph, user1, user2);
+        int distance = Algorithms.shortestDistance(graph, user1, user2) ;
 
         if (distance == -1) return result + "There is no connection between " + user1 + " and " + user2 + "\n";
 
-        return result + "<result>\n" + distance + "\n" + "</result>\n";
+        int retweet = distance-1;
+
+        return result + "<result>\n" + retweet + "\n" + "</result>\n";
     }
     public static String getFileData (String filePath) throws IOException {
 

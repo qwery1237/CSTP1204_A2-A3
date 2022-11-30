@@ -34,7 +34,7 @@ public class TwitterAnalysisTest {
 
         String expected1 = "query: numRetweets A J\n" +
                 "<result>\n" +
-                "3\n" +
+                "2\n" +
                 "</result>\n";
 
         String expected2 = "query: numRetweets B J\n" +
