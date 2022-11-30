@@ -29,9 +29,9 @@ public class Algorithms {
                 if(queue.isEmpty()) {
                     List<Vertex> grandChildV = new ArrayList<>();
 
-                    for (Vertex v2 : childV) {
-                        for(Vertex v3 : graph.getDownstreamNeighbors(v2)) {
-                            if(!traverse.contains(v3)) grandChildV.add(v3);
+                    for (Vertex child : childV) {
+                        for(Vertex grandChild : graph.getDownstreamNeighbors(child)) {
+                            if(!traverse.contains(grandChild)) grandChildV.add(grandChild);
                         }
                     }
 
@@ -84,9 +84,11 @@ public class Algorithms {
         if (a.equals(b)) return 0;
 
         int distance = 1;
-        List<Vertex> checkLi = new ArrayList<>();
+
         List<Vertex> childV = graph.getDownstreamNeighbors(a);
         Queue<Vertex> queue = new LinkedList<>();
+        List<Vertex> checkLi = new ArrayList<>();
+
 
         queue.addAll(childV);
 
@@ -100,14 +102,15 @@ public class Algorithms {
             if(queue.isEmpty()) {
                 List<Vertex> grandChildV = new ArrayList<>();
 
-                for (Vertex v2 : childV) {
-                    for(Vertex v3 : graph.getDownstreamNeighbors(v2)) {
-                        if(!checkLi.contains(v3)) grandChildV.add(v3);
+                for (Vertex child : childV) {
+                    for(Vertex grandChild : graph.getDownstreamNeighbors(child)) {
+                        if(!checkLi.contains(grandChild)) grandChildV.add(grandChild);
                     }
                 }
 
                 childV = grandChildV;
                 queue.addAll(childV);
+
                 distance++;
             }
 
@@ -116,14 +119,18 @@ public class Algorithms {
     }
     public static List<Vertex> commonUpstreamVertices(Graph graph, Vertex v1, Vertex v2){
         List<Vertex> li = new ArrayList<>();
+
         li.addAll(graph.getUpstreamNeighbors(v1));
         li.retainAll(graph.getUpstreamNeighbors(v2));
+
         return li;
     }
     public static List<Vertex> commonDownstreamVertices(Graph graph, Vertex v1, Vertex v2){
         List<Vertex> li = new ArrayList<>();
+
         li.addAll(graph.getDownstreamNeighbors(v1));
         li.retainAll(graph.getDownstreamNeighbors(v2));
+
         return li;
     }
 

@@ -25,6 +25,7 @@ public class TwitterAnalysis {
         try{
             System.out.println("Downloading from " + filePath + " ...");
             data = getFileData(filePath);
+
         }catch (FileNotFoundException fnfe) {
             System.out.println("File not found : " + filePath);
         }
@@ -46,13 +47,12 @@ public class TwitterAnalysis {
         try{
             System.out.println("Downloading from " + filePath + " ...");
             data = getFileData(filePath);
+
         }catch (FileNotFoundException fnfe) {
             System.out.println("File not found : " + filePath);
         }
 
         queries = getQuerySet(data);
-
-        System.out.println(usersGraph);
 
         for (String query : queries) {
 
@@ -79,11 +79,12 @@ public class TwitterAnalysis {
         String result = "query: commonInfluencers "+user1 + " " + user2 + "\n";
 
         if (commonUpstream.isEmpty())
-            return result + "There is no common influences between " + user1 + " and " + user2 + "\n";
+            return result + "There is no common influencers between " + user1 + " and " + user2 + "\n";
 
         result = result + "<result>\n";
 
         for (Vertex user : commonUpstream) result = result + user + "\n";
+
         result += "</result>\n";
 
         return result;
@@ -103,7 +104,6 @@ public class TwitterAnalysis {
 
 
         InputStream stream = new FileInputStream(filePath);
-
         StringBuffer buffer = new StringBuffer();
 
         int line = stream.read();

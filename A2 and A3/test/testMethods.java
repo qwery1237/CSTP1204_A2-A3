@@ -13,6 +13,7 @@ import java.util.List;
 public class testMethods {
     public static AdjacencyListGraph getListGraph () {
         AdjacencyListGraph graph = new AdjacencyListGraph();
+
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
         Vertex c = new Vertex("C");
@@ -50,6 +51,7 @@ public class testMethods {
 
     public static AdjacencyMatrixGraph getMatrixGraph () {
         AdjacencyMatrixGraph graph = new AdjacencyMatrixGraph();
+
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
         Vertex c = new Vertex("C");
@@ -87,7 +89,9 @@ public class testMethods {
 
     public static List<Vertex> toList(String[] expected) {
         List<Vertex> li = new ArrayList<>();
+
         for (String el: expected) li.add(new Vertex(el));
+
         return li;
     }
 }

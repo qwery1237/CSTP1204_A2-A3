@@ -17,7 +17,7 @@ public class TwitterAnalysisTest {
                 "</result>\n";
 
         String expected2 = "query: commonInfluencers A G\n" +
-                "There is no common influences between A and G\n";
+                "There is no common influencers between A and G\n";
 
         Vertex a = new Vertex("A");
         Vertex g = new Vertex("G");
@@ -52,14 +52,17 @@ public class TwitterAnalysisTest {
     public void QueryTest(){
         String validQuery1 ="numRetweets 14838508 98032178 ?";
         String validQuery2 = "commonInfluencers 14838508 98032178 ?";
+
         String notEndswith = "numRetweets 14838508 98032178";
         String noSpaceBetween = "numRetweets 14838508 98032178?";
         String exceededArgumentNum = "numRetweets 14838508 98032178  14838508 ?";
         String notEnoughArgument = "commonInfluencers 14838508 ?";
         String notValidCommand1 = "numRet 14838508 98032178 ?";
         String notValidCommand2 = "commenInf 14838508 98032178 ?";
+
         assertEquals(true,TwitterAnalysis.isQuery(validQuery1));
         assertEquals(true,TwitterAnalysis.isQuery(validQuery2));
+
         assertEquals(false,TwitterAnalysis.isQuery(notEndswith));
         assertEquals(false,TwitterAnalysis.isQuery(noSpaceBetween));
         assertEquals(false,TwitterAnalysis.isQuery(exceededArgumentNum));
