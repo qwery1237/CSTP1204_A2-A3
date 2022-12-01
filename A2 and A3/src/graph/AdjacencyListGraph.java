@@ -14,10 +14,8 @@ public class AdjacencyListGraph implements Graph {
 
     @Override
     public void addEdge(Vertex v1, Vertex v2) {
-        if (!vertexExists(v1)) addVertex(v1);
-        if (!vertexExists(v2)) addVertex(v2);
-
-        adjacencyList.get(v1).add(v2);
+        if (vertexExists(v1) && vertexExists(v2)) { adjacencyList.get(v1).add(v2); }
+        else { System.out.println("Vertex " + v1 +  " or " + v2 + " does not exist"); }
     }
 
     public boolean vertexExists(Vertex v) { return adjacencyList.containsKey(v); }

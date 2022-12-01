@@ -8,7 +8,7 @@ import staff.Vertex;
 
 import java.util.*;
 
-public class AlgorithmsTest {
+public class AlgorithmsTestByMySelf {
 
 
     @Test

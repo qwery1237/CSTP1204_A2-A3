@@ -1,29 +1,33 @@
-import static org.junit.Assert.*;
-
 import graph.AdjacencyListGraph;
-import graph.AdjacencyMatrixGraph;
 import org.junit.Test;
 import staff.Vertex;
 import twitterAnalysis.TwitterAnalysis;
 
+import static org.junit.Assert.assertEquals;
+
 public class TwitterAnalysisTest {
+
+    /** I added one more edge because there is no vertexes have a common influencer */
     @Test
     public void commonInfluencersTest(){
         AdjacencyListGraph graph = testMethods.getListGraph();
 
-        String expected1 = "query: commonInfluencers G H\n" +
+        String expected1 = "query: commonInfluencers B C\n" +
                 "<result>\n" +
-                "C\n" +
+                "G\n" +
                 "</result>\n";
 
         String expected2 = "query: commonInfluencers A G\n" +
                 "There is no common influencers between A and G\n";
 
         Vertex a = new Vertex("A");
+        Vertex b = new Vertex("B");
+        Vertex c = new Vertex("C");
         Vertex g = new Vertex("G");
-        Vertex h = new Vertex("H");
 
-        assertEquals(expected1,TwitterAnalysis.commonInfluencers(graph,g,h));
+        graph.addEdge(b,g); // add edge to have a common influencer between b and c.
+
+        assertEquals(expected1,TwitterAnalysis.commonInfluencers(graph,b,c));
         assertEquals(expected2,TwitterAnalysis.commonInfluencers(graph,a,g));
 
 
@@ -32,20 +36,20 @@ public class TwitterAnalysisTest {
     public void retweetsTest(){
         AdjacencyListGraph graph = testMethods.getListGraph();
 
-        String expected1 = "query: numRetweets A J\n" +
+        String expected1 = "query: numRetweets J A\n" +
                 "<result>\n" +
                 "2\n" +
                 "</result>\n";
 
-        String expected2 = "query: numRetweets B J\n" +
-                "There is no connection between B and J\n";
+        String expected2 = "query: numRetweets J B\n" +
+                "There is no connection between J and B\n";
 
         Vertex a = new Vertex("A");
         Vertex b = new Vertex("B");
         Vertex j = new Vertex("J");
 
-        assertEquals(expected1, TwitterAnalysis.retweets(graph,a,j));
-        assertEquals(expected2,TwitterAnalysis.retweets(graph,b,j));
+        assertEquals(expected1, TwitterAnalysis.retweets(graph,j,a));
+        assertEquals(expected2,TwitterAnalysis.retweets(graph,j,b));
 
     }
     @Test

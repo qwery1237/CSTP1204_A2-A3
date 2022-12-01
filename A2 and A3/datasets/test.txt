@@ -1,1 +1,6 @@
-numRetweets 10416 37722200 ?
+numRetweets 38571755 84200495 ?
+commonInfluencers 38571755 84200495 ?
+commonInfluencers 10416 77514130 ?
+commonInfluencers 77514130 35831627 ?
+numRetweets 10416 77514130 ?
+numRetweets 77514130 35831627 ?

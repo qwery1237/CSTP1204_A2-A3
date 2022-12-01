@@ -27,10 +27,8 @@ public class AdjacencyMatrixGraph implements Graph {
 
     @Override
     public void addEdge(Vertex v1, Vertex v2) {
-        if (!vertexExists(v1)) addVertex(v1);
-        if (!vertexExists(v2)) addVertex(v2);
-
-        adjacencyMatrix.get(v1).put(v2,true);
+        if (vertexExists(v1) && vertexExists(v2)) { adjacencyMatrix.get(v1).put(v2,true); }
+        else { System.out.println("Vertex " + v1 +  " or " + v2 + " does not exist"); }
     }
 
     public boolean vertexExists(Vertex v) { return adjacencyMatrix.containsKey(v); }

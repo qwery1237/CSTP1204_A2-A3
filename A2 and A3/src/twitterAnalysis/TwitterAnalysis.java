@@ -36,7 +36,10 @@ public class TwitterAnalysis {
             Vertex user1 = users.get(0);
             Vertex user2 = users.get(1);
 
-            usersGraph.addEdge(user2,user1);
+            usersGraph.addVertex(user1);
+            usersGraph.addVertex(user2);
+
+            usersGraph.addEdge(user1,user2);
         }
 
         Set<String> queries;
@@ -75,7 +78,7 @@ public class TwitterAnalysis {
     }
 
     public static String commonInfluencers(Graph graph , Vertex user1, Vertex user2) {
-        List<Vertex> commonUpstream = Algorithms.commonUpstreamVertices(graph, user1, user2);
+        List<Vertex> commonUpstream = Algorithms.commonDownstreamVertices(graph, user1, user2);
         String result = "query: commonInfluencers "+user1 + " " + user2 + "\n";
 
         if (commonUpstream.isEmpty())
@@ -90,9 +93,11 @@ public class TwitterAnalysis {
         return result;
     }
 
+    /** I think the number of retweet should be distance -1
+     * But on your test code the number == distance */
     public static String retweets(Graph graph , Vertex user1, Vertex user2) {
         String result = "query: numRetweets "+user1 + " " + user2 + "\n";
-        int distance = Algorithms.shortestDistance(graph, user1, user2) ;
+        int distance = Algorithms.shortestDistance(graph, user2, user1) ;
 
         if (distance == -1) return result + "There is no connection between " + user1 + " and " + user2 + "\n";
 
