@@ -62,7 +62,7 @@ public class TwitterAnalysis {
             Vertex user1 = new Vertex(queryInfo[1]);
             Vertex user2 = new Vertex(queryInfo[2]);
 
-            if(!usersGraph.vertexExists(user1) || !usersGraph.vertexExists(user2)) continue;
+            if(!usersGraph.vertexExists(user1) || !usersGraph.vertexExists(user2) || user1.equals(user2)) continue;
 
             if (command.startsWith("c")) {
                 System.out.println(commonInfluencers(usersGraph, user1, user2));
@@ -141,6 +141,7 @@ public class TwitterAnalysis {
 
     public static boolean isQuery (String query) {
         return (query.startsWith("commonInfluencers") || query.startsWith("numRetweets"))
-                && query.endsWith("?") && (query.split(" ").length == 4);
+                && query.endsWith("?")
+                && (query.split(" ").length == 4);
     }
 }
